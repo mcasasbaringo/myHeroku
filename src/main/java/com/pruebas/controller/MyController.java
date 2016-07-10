@@ -78,28 +78,15 @@ public class MyController {
 	        return "logoutSuccessfulPage";
 	    }
 	 
-//	    @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
-//	    public String userInfo(Model model, Principal principal) {
-//	 
-//	        // After user login successfully.
-//	        String userName = principal.getName();
-//	 
-//	        System.out.println("User Name: "+ userName);
-//	 
-//	        return "userInfoPage";
-//	    }
 	    @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
-	    public ModelAndView userInfo(Model model, Principal principal) {
+	    public String userInfo(Model model, Principal principal) {
 	 
 	        // After user login successfully.
 	        String userName = principal.getName();
 	 
 	        System.out.println("User Name: "+ userName);
-	        ModelAndView myModel = new ModelAndView();
-	        myModel.addObject("name", userName);
-	        myModel.setViewName("userInfoPage");
-	        
-	        return myModel;
+	 
+	        return "userInfoPage";
 	    }
 	 
 	    @RequestMapping(value = "/403", method = RequestMethod.GET)
