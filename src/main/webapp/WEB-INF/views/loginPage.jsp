@@ -1,15 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ 
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Login</title>
-	</head>
+	<head><title>Login</title></head>
 	<body>
-		<h1>Login</h1>
-	   	<h3>Enter user name and password:</h3>  
+	 
+	   <h1>Login</h1>
 	     
-	   	<form name='f' action="login" method='POST' >
+	     <!-- /login?error=true -->
+	     <c:if test="${param.error == 'true'}">
+	         <div style="color:red;margin:10px 0px;">
+	          
+	                Login Failed!!!<br />
+	                Reason :  ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+	                 
+	         </div>
+	    </c:if>
+	       
+	   <h3>Enter user name and password:</h3>  
+	     
+	   <form name='f' action="j_spring_security_check" method='POST'>
 	      <table>
 	         <tr>
 	            <td>User:</td>
@@ -23,6 +34,6 @@
 	            <td><input name="submit" type="submit" value="submit" /></td>
 	         </tr>
 	      </table>
-	  	</form>
+	  </form>
 	</body>
 </html>

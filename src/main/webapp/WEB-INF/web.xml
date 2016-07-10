@@ -26,22 +26,22 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
-<!-- 	<listener>
+ 	<listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    -->
+    
 	<!-- Loads Spring Security config file -->
-   <!--  <context-param>
+    <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>        
             /WEB-INF/spring/spring-security.xml
         </param-value>
-    </context-param> -->
+    </context-param> 
     <!-- , /WEB-INF/spring/data-source-cfg.xml para la config de BBDD -->
     
     
-	 <!-- Spring Security Filter -->
-   <!--  <filter>
+	<!-- Spring Security Filter -->
+    <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
     </filter>
@@ -49,5 +49,5 @@
     <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping> -->
+    </filter-mapping>
 </web-app>

@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MyController {
 	
+	
 //		@RequestMapping(value="/hello", method=RequestMethod.GET)
 //		public String printWelcome(ModelMap model){
 //			model.addAttribute("message", "Spring 3 MVC Hello World");
@@ -30,7 +31,7 @@ public class MyController {
 //			return model;
 //
 //		}
-		
+/*METODO LOGIN SIN SPRING SECURITY		
 		@RequestMapping(value = { "/login" }, method = RequestMethod.POST)
 		public ModelAndView welcomePage(@RequestParam("username") String username, @RequestParam("password") String password) {
 
@@ -50,44 +51,33 @@ public class MyController {
 			return model;
 
 		}
-//
-//		@RequestMapping(value = "/admin**", method = RequestMethod.GET)
-//		public ModelAndView adminPage() {
-//
-//			ModelAndView model = new ModelAndView();
-//			model.addObject("title", "Spring Security Hello World");
-//			model.addObject("message", "This is protected page!");
-//			model.setViewName("admin");
-//
-//			return model;
-//
-//		}
+*/
 
 		
-//		@RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
-//	    public String welcomePage(Model model) {
-//	        model.addAttribute("title", "Welcome");
-//	        model.addAttribute("message", "This is welcome page!");
-//	        return "welcomePage";
-//	    }
-//		
-//		@RequestMapping(value = "/admin", method = RequestMethod.GET)
-//	    public String adminPage(Model model) {
-//	        return "adminPage";
-//	    }
-//	 
-//	    @RequestMapping(value = "/login", method = RequestMethod.GET)
-//	    public String loginPage(Model model ) {
-//	         
-//	        return "loginPage";
-//	    }
-//	 
-//	    @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
-//	    public String logoutSuccessfulPage(Model model) {
-//	        model.addAttribute("title", "Logout");
-//	        return "logoutSuccessfulPage";
-//	    }
-//	 
+		@RequestMapping(value = "/welcome", method = RequestMethod.GET)
+	    public String welcomePage(Model model) {
+	        model.addAttribute("title", "Welcome");
+	        model.addAttribute("message", "This is welcome page!");
+	        return "welcomePage";
+	    }
+		
+		@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	    public String adminPage(Model model) {
+	        return "adminPage";
+	    }
+	 
+	    @RequestMapping(value = "/login", method = RequestMethod.GET)
+	    public String loginPage(Model model ) {
+	         
+	        return "loginPage";
+	    }
+	 
+	    @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
+	    public String logoutSuccessfulPage(Model model) {
+	        model.addAttribute("title", "Logout");
+	        return "logoutSuccessfulPage";
+	    }
+	 
 //	    @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
 //	    public String userInfo(Model model, Principal principal) {
 //	 
@@ -98,18 +88,31 @@ public class MyController {
 //	 
 //	        return "userInfoPage";
 //	    }
-//	 
-//	    @RequestMapping(value = "/403", method = RequestMethod.GET)
-//	    public String accessDenied(Model model, Principal principal) {
-//	         
-//	        if (principal != null) {
-//	            model.addAttribute("message", "Hi " + principal.getName()
-//	                    + "<br> You do not have permission to access this page!");
-//	        } else {
-//	            model.addAttribute("msg",
-//	                    "You do not have permission to access this page!");
-//	        }
-//	        return "403Page";
-//	    }
+	    @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
+	    public ModelAndView userInfo(Model model, Principal principal) {
+	 
+	        // After user login successfully.
+	        String userName = principal.getName();
+	 
+	        System.out.println("User Name: "+ userName);
+	        ModelAndView myModel = new ModelAndView();
+	        myModel.addObject("name", userName);
+	        myModel.setViewName("userInfoPage");
+	        
+	        return myModel;
+	    }
+	 
+	    @RequestMapping(value = "/403", method = RequestMethod.GET)
+	    public String accessDenied(Model model, Principal principal) {
+	         
+	        if (principal != null) {
+	            model.addAttribute("message", "Hi " + principal.getName()
+	                    + "<br> You do not have permission to access this page!");
+	        } else {
+	            model.addAttribute("msg",
+	                    "You do not have permission to access this page!");
+	        }
+	        return "403Page";
+	    }
 
 }
