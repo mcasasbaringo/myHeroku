@@ -3,9 +3,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
-		<title>Welcome Heroku</title>
+		<title>Logout</title>
 	</head>
 	<body>
-		Hello Heroku -- ${msg}
+	
+	    <h1>Logout Successful!</h1>
 	</body>
 </html>
