@@ -100,7 +100,7 @@
 	        <artifactId>heroku-maven-plugin</artifactId>
 	        <version>1.0.3</version>
 	        <configuration>
-			  <appName>dry-mountain-40959</appName>
+			  <appName>stormy-brook-71194</appName>
 			<!--si es una app java, no tiene war
 			 	<processTypes>
 			     <web>java $JAVA_OPTS -cp target/classes:target/dependency/* Main</web>
