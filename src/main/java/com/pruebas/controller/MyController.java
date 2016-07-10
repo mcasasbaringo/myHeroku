@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -30,9 +31,10 @@ public class MyController {
 //
 //		}
 		
-		@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
-		public ModelAndView welcomePage(@PathVariable("username") String username, @PathVariable("password") String password) {
+		@RequestMapping(value = { "/login" }, method = RequestMethod.POST)
+		public ModelAndView welcomePage(@RequestParam("username") String username, @RequestParam("password") String password) {
 
+			System.out.println("Inicio welcomePage, user: " +username +" password: " + password);
 			ModelAndView model = new ModelAndView();
 			
 			if(username.equals(password)){
@@ -48,18 +50,18 @@ public class MyController {
 			return model;
 
 		}
-
-		@RequestMapping(value = "/admin**", method = RequestMethod.GET)
-		public ModelAndView adminPage() {
-
-			ModelAndView model = new ModelAndView();
-			model.addObject("title", "Spring Security Hello World");
-			model.addObject("message", "This is protected page!");
-			model.setViewName("admin");
-
-			return model;
-
-		}
+//
+//		@RequestMapping(value = "/admin**", method = RequestMethod.GET)
+//		public ModelAndView adminPage() {
+//
+//			ModelAndView model = new ModelAndView();
+//			model.addObject("title", "Spring Security Hello World");
+//			model.addObject("message", "This is protected page!");
+//			model.setViewName("admin");
+//
+//			return model;
+//
+//		}
 
 		
 //		@RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)

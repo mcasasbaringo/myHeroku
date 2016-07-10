@@ -9,7 +9,7 @@
 		<h1>Login</h1>
 	   	<h3>Enter user name and password:</h3>  
 	     
-	   	<form name='f' action="login" method='GET'>
+	   	<form name='f' action="login" method='POST' >
 	      <table>
 	         <tr>
 	            <td>User:</td>
