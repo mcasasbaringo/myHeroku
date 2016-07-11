@@ -14,6 +14,7 @@
 		<spring-security.version>4.0.4.RELEASE</spring-security.version>
 		<jstl.version>1.2</jstl.version>
 		<javax.servlet>3.1.0</javax.servlet>
+		<hibernate.version>4.3.11.Final</hibernate.version>
 	</properties>
 	
 	<dependencies>
@@ -33,9 +34,26 @@
             <artifactId>spring-web</artifactId>
             <version>${spring-mvc.version}</version>
         </dependency>
+        
+        <dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-jdbc</artifactId>
+		    <version>${spring-mvc.version}</version>
+		</dependency>       
+        
+        <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring-mvc.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-orm</artifactId>
+		    <version>${spring-mvc.version}</version>
+		</dependency> 
 		
 		<!-- spring security -->
-		<dependency>
+		<!-- <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
             <version>${spring-security.version}</version>
@@ -44,7 +62,7 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
             <version>${spring-security.version}</version>
-        </dependency>
+        </dependency> -->
         
         <!-- jstl for jsp page -->
 		<dependency>
@@ -75,11 +93,33 @@
 		    <scope>provided</scope>
 		</dependency>
 		
+		<!-- BBDD -->
 	    <dependency>
 	      <groupId>org.postgresql</groupId>
 	      <artifactId>postgresql</artifactId>
 	      <version>9.4-1201-jdbc4</version>
 	    </dependency>
+	    
+	   	<!-- Hibernate -->
+		<dependency>
+           <groupId>org.hibernate</groupId>
+           <artifactId>hibernate-core</artifactId>
+           <version>${hibernate.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.hibernate</groupId>
+           <artifactId>hibernate-entitymanager</artifactId>
+           <version>${hibernate.version}</version>
+       </dependency>
+       
+       
+       <dependency>
+		    <groupId>commons-dbcp</groupId>
+		    <artifactId>commons-dbcp</artifactId>
+		    <version>1.2.2</version>
+		</dependency>
+       
+
 	</dependencies>
   
   <build>

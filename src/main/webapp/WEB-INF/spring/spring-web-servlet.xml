@@ -20,9 +20,41 @@
 
 	<mvc:resources mapping="/resources/**" location="/resources/" />
  
-  	<!--<mvc:view-controller path="/" view-name="loginNoSec"/> --> 
-  	<mvc:view-controller path="/" view-name="loginPage"/> 
+  	<mvc:view-controller path="/" view-name="loginNoSec"/>  
+  	<!--<mvc:view-controller path="/" view-name="loginPage"/>--> 
   	
 	<mvc:annotation-driven />
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"> -->
+		  <!-- <property name="driverClassName" value="org.postgresql.Driver" /> -->
+		  <property name="url" value="jdbc:postgres://ndixrpvtdjlqlj:dlX8sZiIa2mS5-GrmbLJYI91le@ec2-54-247-121-238.eu-west-1.compute.amazonaws.com:5432/d5vtef6a7ddeuf" />
+		  <property name="username" value="ndixrpvtdjlqlj" />
+		  <property name="password" value="dlX8sZiIa2mS5-GrmbLJYI91le-L7R-KB" />
+	 </bean>
+
+	 <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		  <property name="dataSource" ref="dataSource" />
+		  <property name="annotatedClasses">  
+	            <list>  
+	                <value>com.pruebas.modelo.dto.UserDTO</value>  
+	            </list>  
+		  </property> 
+		  <property name="hibernateProperties">
+			   <props>
+				    <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+				    <prop key="hibernate.show_sql">true</prop>
+				    <prop key="hibernate.connection.requireSSL">true</prop>
+			   </props>
+		  </property>
+	 </bean>
+
+	 <bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+	  	<property name="sessionFactory" ref="sessionFactory" />
+	 </bean>
+
+ 	<bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+	<bean id="userServiceImpl" class="com.pruebas.service.impl.UserServiceImpl" />
 	
 </beans>

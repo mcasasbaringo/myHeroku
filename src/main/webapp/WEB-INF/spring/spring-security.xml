@@ -36,19 +36,22 @@
     </http>
  
     <authentication-manager>
-        <authentication-provider>
+       <!--   <authentication-provider>
             <user-service>
                 <user name="user1" password="12345" authorities="ROLE_USER" />
                 <user name="admin1" password="12345" authorities="ROLE_USER, ROLE_ADMIN" />
             </user-service>
-        </authentication-provider> 
+        </authentication-provider>  -->
+		<authentication-provider user-service-ref="myUserDetailsService" >
+			<password-encoder hash="bcrypt" />    
+		</authentication-provider>
   
         <!-- authentication from database -->
-      <!--   <authentication-provider>
+        <!-- <authentication-provider>
             <jdbc-user-service data-source-ref="myDataSource"
                 users-by-username-query="select name, id from salesforce.user where name=?" />   authorities-by-username-query="Select username, concat('ROLE_',user_role) user_role from user_roles where username=?"
         </authentication-provider> -->
-
+	
     </authentication-manager> 
  
 </beans:beans>
