@@ -35,9 +35,11 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>        
             /WEB-INF/spring/spring-security.xml
+           <!--  , 
+            /WEB-INF/spring/data-source-cfg.xml -->
         </param-value>
     </context-param> 
-    <!-- , /WEB-INF/spring/data-source-cfg.xml para la config de BBDD -->
+    <!--  para la config de BBDD -->
     
     
 	<!-- Spring Security Filter -->

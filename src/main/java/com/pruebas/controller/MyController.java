@@ -86,7 +86,7 @@ public class MyController {
 	 
 	        System.out.println("User Name: "+ userName);
 	 
-	        return "userInfoPage";
+	        return "userInforPage";
 	    }
 	 
 	    @RequestMapping(value = "/403", method = RequestMethod.GET)

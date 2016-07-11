@@ -5,13 +5,11 @@
   http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
  
  
-  <bean id="myDataSource"
-      class="org.springframework.jdbc.datasource.DriverManagerDataSource">
- 
+  <bean id="myDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
       <property name="driverClassName" value="org.postgresql.Driver" />
-      <property name="url" value=" postgres://ndixrpvtdjlqlj:dlX8sZiIa2mS5-GrmbLJYI91le@ec2-54-247-121-238.eu-west-1.compute.amazonaws.com:5432/d5vtef6a7ddeuf" />
+      <property name="url" value="postgres://ndixrpvtdjlqlj:dlX8sZiIa2mS5-GrmbLJYI91le@ec2-54-247-121-238.eu-west-1.compute.amazonaws.com:5432/d5vtef6a7ddeuf" />
       <property name="username" value="ndixrpvtdjlqlj" />
-      <property name="password" value=" dlX8sZiIa2mS5-GrmbLJYI91le" />
+      <property name="password" value="dlX8sZiIa2mS5-GrmbLJYI91le"/>
   </bean>
   
   
