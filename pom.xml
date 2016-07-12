@@ -182,7 +182,7 @@
 	        <artifactId>heroku-maven-plugin</artifactId>
 	        <version>1.0.3</version>
 	        <configuration>
-				<appName>miapp011</appName>
+				<appName>miapp012</appName>
 			<!--si es una app java, no tiene war
 			 	<processTypes>
 			     <web>java $JAVA_OPTS -cp target/classes:target/dependency/* Main</web>

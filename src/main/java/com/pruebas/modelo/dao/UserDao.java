@@ -43,6 +43,15 @@ public class UserDao {
 		
 		List<Object[]> lista = query.list();
 		List<UserDTO> listaDir = new ArrayList<UserDTO>();
+		System.out.println("query ejecutada");
+		for(int i=0; i<lista.size();i++){
+			Object[] ob = lista.get(i);
+			System.out.println("mis valores: "+ob);
+			System.out.println("mi componente name: "+ob[0]);
+			UserDTO userAux = new UserDTO();
+			userAux.setName((String)ob[0]);
+			listaDir.add(userAux);
+		}
 //		System.out.println("InicioTransaccion");
 //		Criteria criteria = session.createCriteria(UserDTO.class);
 //		criteria.add(Restrictions.eq("name", name));
