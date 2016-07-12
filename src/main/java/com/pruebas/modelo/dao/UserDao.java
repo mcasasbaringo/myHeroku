@@ -39,12 +39,14 @@ public class UserDao {
 		System.out.println("Sesion creada--" + session);
 		//session.beginTransaction();
 		
-		SQLQuery query = session.createSQLQuery("select name  from salesforce.user");
+		SQLQuery query = session.createSQLQuery("select * from salesforce.user");
 		
 		List<Object[]> lista = query.list();
 		List<UserDTO> listaDir = new ArrayList<UserDTO>();
 		System.out.println("query ejecutada");
+		System.out.println("lista: " + listaDir);
 		for(int i=0; i<lista.size();i++){
+			System.out.println("Estoy en el bucle");
 			Object[] ob = lista.get(i);
 			System.out.println("mis valores: "+ob);
 			System.out.println("mi componente name: "+ob[0]);
@@ -56,7 +58,9 @@ public class UserDao {
 //		Criteria criteria = session.createCriteria(UserDTO.class);
 //		criteria.add(Restrictions.eq("name", name));
 //		
-		UserDTO  user = listaDir.get(0);
+		UserDTO  user = new UserDTO();
+		if(listaDir.size()>0)
+			user = listaDir.get(0);
 		session.close();
 		
 		return user;

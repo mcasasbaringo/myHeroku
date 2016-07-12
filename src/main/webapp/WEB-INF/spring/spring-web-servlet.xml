@@ -18,7 +18,7 @@
 		<property name="suffix" value=".jsp"/>
 	</bean>
 
-	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<!-- <mvc:resources mapping="/resources/**" location="/resources/" /> -->
  
   	<mvc:view-controller path="/" view-name="loginNoSec"/>  
   	<!--<mvc:view-controller path="/" view-name="loginPage"/>--> 
