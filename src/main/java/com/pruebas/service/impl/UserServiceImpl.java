@@ -13,10 +13,16 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public boolean isUser(String name, String password) {
-		System.out.println("Consulto si es usuario: " + name);
+
+		System.out.println("Inicio isUser - UserService");
+		
+//		UserDao user = new UserDao();
+//		user.updateUser();
+		
 		UserDTO userDto = new UserDTO();
 		userDto = userDao.getUser(name, password);
 		System.out.println("Usuario recuperado, user: " + userDto.getName());
+		
 		if("".equals(userDto.getName()))
 			return false;
 		else

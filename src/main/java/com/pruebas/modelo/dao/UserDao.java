@@ -21,7 +21,6 @@ import com.pruebas.modelo.dto.UserDTO;
 @Repository
 public class UserDao {
 
-//	private static final SessionFactory sessionFactory = buildSessionFactory();
 	@Autowired
 	private SessionFactory sessionFactory;
 	
@@ -34,30 +33,29 @@ public class UserDao {
 	 */
 	@Transactional
 	public UserDTO getUser(String name, String password){
-		System.out.println("GetUser--- use: "+name);
+
+		System.out.println("Inicio getUser - UserDTO");
 		Session session = sessionFactory.openSession();
-		System.out.println("Sesion creada--" + session);
-		//session.beginTransaction();
 		
-		SQLQuery query = session.createSQLQuery("select * from salesforce.user where name = 'Eric Santiago'");
+		SQLQuery query = session.createSQLQuery("select id, username__c, password__c, name from salesforce.HerokuUser__c where name = '" +name + "'");
 		
 		List<Object[]> lista = query.list();
+		
 		List<UserDTO> listaDir = new ArrayList<UserDTO>();
-		System.out.println("query ejecutada");
-		System.out.println("lista: " + listaDir);
+		
 		for(int i=0; i<lista.size();i++){
-			System.out.println("Estoy en el bucle");
+
 			Object[] ob = lista.get(i);
-			System.out.println("mis valores: "+ob);
-			System.out.println("mi componente name: "+ob[0]);
 			UserDTO userAux = new UserDTO();
-			userAux.setName((String)ob[0]);
+			
+			userAux.setId((Integer) ob[0]);
+			userAux.setName((String)ob[1]);
+			userAux.setPass((String)ob[2]);
+			
 			listaDir.add(userAux);
+			
 		}
-//		System.out.println("InicioTransaccion");
-//		Criteria criteria = session.createCriteria(UserDTO.class);
-//		criteria.add(Restrictions.eq("name", name));
-//		
+
 		UserDTO  user = new UserDTO();
 		if(listaDir.size()>0)
 			user = listaDir.get(0);
@@ -65,18 +63,27 @@ public class UserDao {
 		
 		return user;
 	}
-	
-//	private static SessionFactory buildSessionFactory() {
-//        try {
-//        	System.out.println("BuildSessionFactory----inicio");
-//            // Create the SessionFactory from hibernate.cfg.xml
-//        	 return new Configuration().configure().buildSessionFactory();
-//        }
-//        catch (Throwable ex) {
-//            // Make sure you log the exception, as it might be swallowed
-//            System.err.println("Initial SessionFactory creation failed." + ex);
-//            throw new ExceptionInInitializerError(ex);
-//        }
-//    }
+
+	@Transactional
+	public void updateUser(){
+
+		System.out.println("Inicio updateUser - UserDTO");
+		Session session = sessionFactory.openSession();
+
+		System.out.println("Antes de update");
+		
+		SQLQuery query = session.createSQLQuery("update salesforce.HerokuUser__c set username__c='userp2123' where id=1");
+
+		System.out.println("query -- " + query);
+		int i = query.executeUpdate();
+		System.out.println("despues de update");
+	    
+	    //Commit the transaction
+//        session.getTransaction().commit();
+        session.close();
+
+        
+	}
+
 	
 }
