@@ -39,7 +39,7 @@ public class UserDao {
 		System.out.println("Sesion creada--" + session);
 		//session.beginTransaction();
 		
-		SQLQuery query = session.createSQLQuery("select * from salesforce.user");
+		SQLQuery query = session.createSQLQuery("select * from salesforce.user where name = 'Eric Santiago'");
 		
 		List<Object[]> lista = query.list();
 		List<UserDTO> listaDir = new ArrayList<UserDTO>();
