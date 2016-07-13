@@ -26,11 +26,14 @@
 	<mvc:annotation-driven />
 	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"> -->
-		  <!-- <property name="driverClassName" value="org.postgresql.Driver" /> -->
-		  <property name="url" value="jdbc:postgresql://ec2-54-225-112-215.compute-1.amazonaws.com:5432/d8pm7vpkdjcjmj" />
+		  <property name="driverClassName" value="org.postgresql.Driver" />
+		 <!--  <property name="url" value="jdbc:postgresql://ec2-54-225-112-215.compute-1.amazonaws.com:5432/d8pm7vpkdjcjmj" />
 		  <property name="username" value="ovmmgtxiqiqxtk" />
-		  <property name="password" value="kVY-CwXu2L5mFvH0gSW_Gzj_Uf" />
+		  <property name="password" value="kVY-CwXu2L5mFvH0gSW_Gzj_Uf" /> -->
+		  
+		 <property name="url" value="jdbc:postgresql://localhost:5432/postgres" />
+		  <property name="username" value="postgres" />
+		  <property name="password" value="deloitte12" />  
 	 </bean>
 
 	 <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">

@@ -2,9 +2,12 @@ package com.pruebas.modelo.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -36,32 +39,55 @@ public class UserDao {
 
 		System.out.println("Inicio getUser - UserDTO");
 		Session session = sessionFactory.openSession();
+		Transaction tx = null;
 		
-		SQLQuery query = session.createSQLQuery("select id, username__c, password__c, name from salesforce.HerokuUser__c where name = '" +name + "'");
-		
-		List<Object[]> lista = query.list();
-		
-		List<UserDTO> listaDir = new ArrayList<UserDTO>();
-		
-		for(int i=0; i<lista.size();i++){
-
-			Object[] ob = lista.get(i);
-			UserDTO userAux = new UserDTO();
+		UserDTO miUser = new UserDTO();
+	    try{
+		    tx = session.beginTransaction();
+			Query query = session.createQuery("from UserDTO as user WHERE user.name = :name and user.pass = :pass");
+			query.setString("name", name);
+			query.setString("pass", password);
 			
-			userAux.setId((Integer) ob[0]);
-			userAux.setName((String)ob[1]);
-			userAux.setPass((String)ob[2]);
+			List userList = query.list(); 	 
 			
-			listaDir.add(userAux);
-			
-		}
-
-		UserDTO  user = new UserDTO();
-		if(listaDir.size()>0)
-			user = listaDir.get(0);
-		session.close();
-		
-		return user;
+			for (Iterator iterator = userList.iterator(); iterator.hasNext();){
+				miUser = (UserDTO) iterator.next(); 
+				System.out.print("First Name: " + miUser.getName()); 
+			}
+			tx.commit();
+	    }catch (HibernateException e) {
+	    	if (tx!=null) tx.rollback();
+	    	e.printStackTrace(); 
+	    }finally {
+	    	session.close(); 
+	    }
+	      return miUser;
+//		SQLQuery query = session.createSQLQuery("select id, username__c, password__c, name from salesforce.herokuuser__c "
+//				+ "where username__c = '" +name + "' and password__c ='" + password +"'");
+//		
+//		List<Object[]> lista = query.list();
+//		
+//		List<UserDTO> listaDir = new ArrayList<UserDTO>();
+//		
+//		for(int i=0; i<lista.size();i++){
+//
+//			Object[] ob = lista.get(i);
+//			UserDTO userAux = new UserDTO();
+//			
+//			userAux.setId((Integer) ob[0]);
+//			userAux.setName((String)ob[1]);
+//			userAux.setPass((String)ob[2]);
+//			
+//			listaDir.add(userAux);
+//			
+//		}
+//
+//		UserDTO  user = new UserDTO();
+//		if(listaDir.size()>0)
+//			user = listaDir.get(0);
+//		session.close();
+//		
+//		return user;
 	}
 
 	@Transactional
@@ -72,9 +98,14 @@ public class UserDao {
 
 		System.out.println("Antes de update");
 		
-		SQLQuery query = session.createSQLQuery("update salesforce.HerokuUser__c set username__c='userp2123' where id=1");
+//		UserDTO user = new UserDTO();
+//		user.setId(1);
+//		user.setName("userp2");
+//		session.update(user);
+		
+		SQLQuery query = session.createSQLQuery("update salesforce.herokuuser__c set username__c='CambioElUserName' where id=4");
 
-		System.out.println("query -- " + query);
+//		System.out.println("query -- " + query);
 		int i = query.executeUpdate();
 		System.out.println("despues de update");
 	    
@@ -85,5 +116,34 @@ public class UserDao {
         
 	}
 
+	@Transactional
+	public void insertUser(){
+
+		System.out.println("Inicio updateUser - insertUser");
+		Session session = sessionFactory.openSession();
+
+		System.out.println("Antes de update");
+		
+//		UserDTO user = new UserDTO();
+//		user.setId(4);
+//		user.setName("userp4");
+//		user.setPass("pass4");
+//		session.save(user);
+		
+		SQLQuery query = session.createSQLQuery("INSERT INTO salesforce.HerokuUser__c(name, username__c, password__c,"
+				+ " id, email__c) VALUES ('namePruebas', 'userName', 'pass', 4,'email@pruebas.com')");
+
+//		System.out.println("query -- " + query);
+//		int i = query.executeUpdate();
+		query.executeUpdate();
+		System.out.println("despues de update");
+	    
+	    //Commit the transaction
+//        session.getTransaction().commit();
+        session.close();
+        
+	}
+	
+	
 	
 }

@@ -1,13 +1,15 @@
 package com.pruebas.modelo.dto;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="salesforce.user")
-public class UserDTO {
+@Table(name="salesforce.herokuuser__c")
+public class UserDTO implements Serializable{
 
 	/** Cadena que representa la contraseña del usuario */
 	@Column(name = "username__c")

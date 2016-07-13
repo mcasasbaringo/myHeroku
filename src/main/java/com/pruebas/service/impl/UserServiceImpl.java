@@ -16,14 +16,15 @@ public class UserServiceImpl implements UserService{
 
 		System.out.println("Inicio isUser - UserService");
 		
-//		UserDao user = new UserDao();
-//		user.updateUser();
+
+//		userDao.updateUser();
+//		userDao.insertUser();
 		
 		UserDTO userDto = new UserDTO();
 		userDto = userDao.getUser(name, password);
 		System.out.println("Usuario recuperado, user: " + userDto.getName());
 		
-		if("".equals(userDto.getName()))
+		if("".equals(userDto.getName()) || userDto.getName() == null)
 			return false;
 		else
 			return true;
