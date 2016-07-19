@@ -28,7 +28,7 @@ public class UserDao {
 	private SessionFactory sessionFactory;
 	
 	/**
-	 * Función que devuelve toda la información del usuario cuyo name y password coinciden con los parámetros pasados
+	 * Funciï¿½n que devuelve toda la informaciï¿½n del usuario cuyo name y password coinciden con los parï¿½metros pasados
 	 * @param name
 	 * @param password
 	 * @return
@@ -89,6 +89,31 @@ public class UserDao {
 //		
 //		return user;
 	}
+	
+	@Transactional
+	public void createTable(){
+
+		System.out.println("Create table");
+		Session session = sessionFactory.openSession();
+
+		System.out.println("Antes de update");
+		
+
+		
+		SQLQuery query = session.createSQLQuery("CREATE TABLE salesforce.miTabla(col1 character varying(80),createddate timestamp without time zone,"
+				+ " col3 character varying(255))");
+
+		System.out.println("query -- " + query);
+		query.executeUpdate();
+		System.out.println("despues de update");
+	    
+	    //Commit the transaction
+//        session.getTransaction().commit();
+        session.close();
+
+        
+	}
+	
 
 	@Transactional
 	public void updateUser(){
