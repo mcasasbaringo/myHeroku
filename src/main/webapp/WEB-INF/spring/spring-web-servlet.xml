@@ -18,29 +18,16 @@
 		<property name="suffix" value=".jsp"/>
 	</bean>
 
-	<!-- <mvc:resources mapping="/resources/**" location="/resources/" /> -->
- 
-  	<mvc:view-controller path="/" view-name="loginNoSec"/>  
-  	<!--<mvc:view-controller path="/" view-name="loginPage"/>--> 
-  	
 	<mvc:annotation-driven />
 	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.postgresql.Driver" />
-		<!--  <property name="url" value="jdbc:postgresql://ec2-54-225-112-215.compute-1.amazonaws.com:5432/d8pm7vpkdjcjmj" />
-		  <property name="username" value="ovmmgtxiqiqxtk" />
-		  <property name="password" value="kVY-CwXu2L5mFvH0gSW_Gzj_Uf" /> -->
-		  <property name="url" value="jdb:#{systemEnvironment['DATABASE_URL']}" />
-		  <!-- <property name="url" value="#{systemEnvironment['database_url2']}" />
-		  <property name="username" value="#{systemEnvironment['database_user']}" />
-		  <property name="password" value="#{systemEnvironment['database_password']}" /> -->
-		  
-		  <!-- <property name="url" value="jdbc:postgresql://localhost:5432/postgres" />
-		  <property name="username" value="postgres" />
-		  <property name="password" value="deloitte12" />   -->
-	 </bean>
+	 	<property name="url" value="#{systemEnvironment['DATABASE_URL_JAVA']}" />
+		<property name="username" value="#{systemEnvironment['DATABASE_USER']}" />
+		<property name="password" value="#{systemEnvironment['DATABASE_PASSWORD']}" />
+	</bean>
 
-	 <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		  <property name="dataSource" ref="dataSource" />
 		  <property name="annotatedClasses">  
 	            <list>  
@@ -54,7 +41,7 @@
 				    <prop key="hibernate.connection.requireSSL">true</prop>
 			   </props>
 		  </property>
-	 </bean>
+	</bean>
 
 	 <bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 	  	<property name="sessionFactory" ref="sessionFactory" />
@@ -62,6 +49,8 @@
 
  	<bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
+	<!-- SErvicios utilizados en la aplicacion -->
 	<bean id="userServiceImpl" class="com.pruebas.service.impl.UserServiceImpl" />
 	
+	<mvc:resources mapping="/resources/**" location="/resources/"/> 
 </beans>

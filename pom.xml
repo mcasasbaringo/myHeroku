@@ -129,7 +129,7 @@
 			</plugin>
 		
 			<!-- configure Eclipse workspace --> 
-			<plugin>
+			<!-- <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
 				<version>2.9</version>
@@ -138,9 +138,10 @@
 					<downloadJavadocs>true</downloadJavadocs>
 					<wtpversion>2.0</wtpversion>
 				</configuration>
-			</plugin>
+			</plugin> -->
 			
-			<plugin>
+			<!-- Deploy heroku con jetty -->
+			<!-- <plugin>
 		          <groupId>org.apache.maven.plugins</groupId>
 		          <artifactId>maven-dependency-plugin</artifactId>
 		          <version>2.3</version>
@@ -160,18 +161,38 @@
 		              </configuration>
 		            </execution>
 		          </executions>
-		      </plugin>
+		      </plugin> -->
+		      
+		      <!-- Deploy heroku con tomcat -->
+		      <plugin>
+		          <groupId>org.apache.maven.plugins</groupId>
+		          <artifactId>maven-dependency-plugin</artifactId>
+		          <version>2.3</version>
+		          <executions>
+		            <execution>
+		              <phase>package</phase>
+		              <goals><goal>copy</goal></goals>
+		              <configuration>
+		                <artifactItems>
+		                  <artifactItem>
+		                    <groupId>com.github.jsimone</groupId>
+		                    <artifactId>webapp-runner</artifactId>
+		                    <version>8.0.30.2</version>
+		                    <destFileName>webapp-runner.jar</destFileName>
+		                  </artifactItem>
+		                </artifactItems>
+		              </configuration>
+		            </execution>
+		          </executions>
+		      </plugin> 
         
+        	<!-- deploy en heroku desde local -->
 		      <plugin>
 		        <groupId>com.heroku.sdk</groupId>
 		        <artifactId>heroku-maven-plugin</artifactId>
 		        <version>1.0.3</version>
 		        <configuration>
 					<appName>miapp012</appName>
-				<!--si es una app java, no tiene war
-				 	<processTypes>
-				     <web>java $JAVA_OPTS -cp target/classes:target/dependency/* Main</web>
-				  </processTypes> -->
 				</configuration>			
 		      </plugin>
 	        

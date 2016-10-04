@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService{
 
 //		userDao.updateUser();
 //		userDao.insertUser();
-		userDao.createTable();
+//		userDao.createTable();
 		
 		UserDTO userDto = new UserDTO();
 		userDto = userDao.getUser(name, password);
